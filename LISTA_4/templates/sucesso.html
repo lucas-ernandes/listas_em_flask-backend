@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+</head>
+<body>
+    <h2>Resultados do Cadastro</h2>
+
+    {% if erros %}
+        <p><strong>Não foi possível realizar o cadastro!</strong></p>
+        <p>Erros encontrados:</p>
+        <ul>
+            {% for erro in erros %}
+                <li>{{ erro }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if sucesso %}
+
+    <p><strong>{{ sucesso }}</strong></p>
+    <p>Ddaos do Aluno:</p>
+    <ul>
+        <li><strong>Nome:</strong> {{ aluno.nome }}</li>
+        <li><strong>Data de Nascimento:</strong> {{ aluno.dt_nasc }}</li>
+        <li><strong>E-mail:</strong> {{ aluno.email }}</li>
+        <li><strong>Curso:</strong> {{ aluno.curso }}</li>
+        <li><strong>CPF:</strong> {{ aluno.cpf }}</li>
+    </ul>
+    {% endif %}
+</body>
+</html>

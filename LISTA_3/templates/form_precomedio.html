@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario</title>
+</head>
+<body>
+    <h1>Calcular o Preço Médio</h1>
+
+    <form action="{{ url_for('form_resultado') }}" method="POST">
+        <div>
+            <label>Tipo de Operação:</label>
+            <select name="opc">
+                <option value="compra">Compra</option>
+                <option value="venda">Venda</option>
+            </select>
+        </div>
+            <br>
+
+            <div>
+                <label>Quantidade:</label>
+                <input type="number" name="qtd">
+            </div>
+            <br>
+
+            <div>
+                <label>Preço Unitário:</label>
+                <input type="number" name="prc" step="0.01">
+            </div>
+            <br>
+
+            <button type="submit">Calcular</button>
+    </form>
+</body>
+</html>
