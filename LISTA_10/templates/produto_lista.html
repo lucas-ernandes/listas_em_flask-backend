@@ -1,0 +1,59 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Produtos cadastrados</h2>
+
+<form method="GET" action="{{ url_for('produto_rota.buscar') }}"
+      class="d-flex gap-2 mb-3">
+    <input type="text" name="termo" class="form-control"
+           placeholder="Pesquisar por código ou descrição"
+           value="{{ termo or '' }}">
+    <button class="btn btn-primary">Buscar</button>
+    <a href="{{ url_for('produto_rota.listar') }}"
+       class="btn btn-secondary">Limpar</a>
+</form>
+
+<a href="{{ url_for('produto_rota.novo') }}"
+   class="btn btn-success mb-3">Novo produto</a>
+
+<div class="table-responsive bg-white">
+<table class="table table-striped table-hover mb-0">
+    <thead class="table-dark">
+        <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Preço unitário</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produto in produtos %}
+        <tr>
+            <td>{{ produto.codigo }}</td>
+            <td>{{ produto.descricao }}</td>
+            <td>R$ {{ "%.2f"|format(produto.preco_unitario)|replace(".", ",") }}</td>
+            <td>
+                <a class="btn btn-info btn-sm"
+                   href="{{ url_for('produto_rota.detalhe', codigo=produto.codigo) }}">Detalhes</a>
+
+                <a class="btn btn-warning btn-sm"
+                   href="{{ url_for('produto_rota.formulario_edicao', codigo=produto.codigo) }}">Editar</a>
+
+                <form method="POST"
+                      action="{{ url_for('produto_rota.excluir', codigo=produto.codigo) }}"
+                      class="d-inline"
+                      onsubmit="return confirm('Deseja excluir este produto?')">
+                    <button class="btn btn-danger btn-sm">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4" class="text-center">Nenhum produto encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

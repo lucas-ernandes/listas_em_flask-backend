@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h2 class="h4 mb-0">Detalhes do produto</h2>
+    </div>
+
+    <div class="card-body">
+        <p><strong>Código:</strong> {{ produto.codigo }}</p>
+        <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
+        <p><strong>Preço unitário:</strong>
+            R$ {{ "%.2f"|format(produto.preco_unitario)|replace(".", ",") }}
+        </p>
+
+        <a class="btn btn-warning"
+           href="{{ url_for('produto_rota.formulario_edicao', codigo=produto.codigo) }}">Editar</a>
+        <a class="btn btn-secondary"
+           href="{{ url_for('produto_rota.listar') }}">Voltar</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-5 bg-white rounded shadow-sm">
+    <h1>Sistema de grenciamento de Produtos</h1>
+    <p class="lead">Cadastre, consulte, edite e remova produtos.</p>
+    <a href="{{ url_for('produto_rota.listar') }}"
+       class="btn btn-primary">Ver produtos</a>
+    <a href="{{ url_for('produto_rota.novo') }}"
+       class="btn btn-success">Cadastrar produto</a>
+</div>
+{% endblock %}

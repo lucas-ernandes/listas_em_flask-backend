@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Produto{% endblock %}
+
+{% block content %}
+{% set editando = editando|default(false) %}
+
+<h2>{{ "Editar produto" if editando else "Cadastrar produto" }}</h2>
+
+<form method="POST"
+      action="{{ url_for('produto_rota.atualizar', codigo=codigo_original or produto.codigo) if editando else url_for('produto_rota.salvar') }}"
+      class="bg-white p-4 rounded shadow-sm">
+
+    <div class="mb-3">
+        <label class="form-label">Código</label>
+        <input type="text" name="codigo" class="form-control"
+               value="{{ produto.codigo if editando else produto.get('codigo', '') if produto else '' }}"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Descrição</label>
+        <input type="text" name="descricao" maxlength="40"
+               class="form-control"
+               value="{{ produto.descricao if editando and produto.descricao is defined else produto.get('descricao', '') if produto else '' }}"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Preço unitário (R$)</label>
+        <input type="number" name="preco_unitario" min="0" step="0.01"
+               class="form-control"
+               value="{{ produto.preco_unitario if editando and produto.preco_unitario is defined else produto.get('preco_unitario', '') if produto else '' }}"
+               required>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Salvar</button>
+    <a href="{{ url_for('produto_rota.listar') }}"
+       class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
