@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Departamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container mt-5"> 
+        <div class="card shadow"> 
+            <div class="card-body">
+                <h1 class="card-title mb-4">Cadastrar Departamento</h1>
+
+                <form action="/departamento/salvar" method="POST"> 
+                <!--Formulario -->
+                    <div class="mb-3"> 
+                        <label class="form-label">Número:</label> 
+                        <input type="number" name="numero" class="form-control" required>
+                    </div> 
+                    
+                    <div class="mb-3"> 
+                        <label class="form-label">Nome:</label> 
+                        <input type="text" name="nome" class="form-control" required> </div> 
+
+                    <button type="submit" class="btn btn-primary"> Cadastrar </button> 
+                    <a href="/departamento/departamentos" class="btn btn-secondary"> Ver departamentos </a> 
+                </form>
+            </div>
+        </div> 
+    </div> 
+</body>
+</html>

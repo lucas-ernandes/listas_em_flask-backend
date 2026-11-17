@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastrar Funcionário</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+          crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <h1 class="card-title mb-4">
+                    Cadastrar Funcionário
+                </h1>
+
+                <form action="/funcionario/salvar" method="POST">
+
+                    <div class="mb-3">
+                        <label class="form-label">Código:</label>
+
+                        <input type="number"
+                               name="codigo"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nome:</label>
+
+                        <input type="text"
+                               name="nome"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Departamento:</label>
+
+                        <select name="departamento"
+                                class="form-select"
+                                required>
+
+                            <option value="">
+                                Selecione um departamento
+                            </option>
+
+                            {% for departamento in departamentos %}
+
+                            <option value="{{ departamento.numero }}">
+                                {{ departamento.nome }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Cadastrar
+                    </button>
+
+                    <a href="/funcionario/funcionarios"
+                       class="btn btn-secondary">
+                        Ver funcionários
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
