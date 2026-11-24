@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    - Login
+{% endblock %}
+
+{% block content %}
+
+{% with mensagens = get_flashed_messages(with_categories=true) %}
+    {% for categoria, mensagem in mensagens %}
+        <p class="{{ categoria }}">{{ mensagem }}</p>
+    {% endfor %}
+{% endwith %}
+
+<div class="grid-conteiner">
+    <div class="grid-row texto-centralizado">
+        <div class="col-12">
+            <h1>Bem Vindo de Volta!</h1>
+            <br>
+            <h2>Entra na Conta</h2>
+        </div>
+    </div>
+    <div class="grid-row">
+
+        <form action="{{ url_for('login') }}" method="POST">
+            <label for="username">Nome do Usuario:</label>
+            <input type="text" id="username" name="username" required>
+
+        <br><br>
+    
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+
+        <br><br>
+
+            <button type="submit">Entrar</button>
+
+    </form>
+    </div>
+</div>
+<br>
+<p>Primeira vez? <a href="/cadastro">Fazer Cadastro</a></p>
+
+{% endblock %}
