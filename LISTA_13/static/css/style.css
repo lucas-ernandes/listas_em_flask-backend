@@ -1,0 +1,91 @@
+*{
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Tela inicio */
+.pagina-ini{
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.area-publicar{
+    margin: 50px auto;
+}
+
+.botao-publicar{
+    display: inline-block;
+    background-color: #1877f2;
+    color: white;
+    padding: 20px 50px;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 12px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.botao-publicar:hover {
+    background-color: #0d5ec7;
+    transform: scale(1.05);
+}
+
+/* cabecalho */
+.navbar{
+    background: linear-gradient(
+        120deg,
+        #ea68a39e 0%,
+        #fafffc 65%,
+        #e8fff0 100%
+    );
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    
+    z-index: 1000;
+}
+
+.nav-links ul{
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: #475569;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover{
+    color: #2563eb;
+}
+
+/* ==== nome logado ===== */
+.nome_perfil{
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 15px;
+}
+
+.navbar a {
+    color: #6c35c9;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.perfil{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}

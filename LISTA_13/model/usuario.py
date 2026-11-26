@@ -1,3 +1,4 @@
+from werkzeug.security import generate_password_hash, check_password_hash
 from dao.usuario_dao import UsuarioDAO
 
 class Usuario:
@@ -19,9 +20,13 @@ class Usuario:
             if not username.strip():
                 self.errors.append("O nome não pode conter apenas espaços.")
         
-        if not password:
-            self.errors.append("A senha não pode ficar vazia.")
-            
+        if password is None or not isinstance(password, str):
+            self.errors.append("A senha deve ser uma string.")
+        else:
+            if not password.strip():
+                self.errors.append('A senha não pode ser vazia.')
+            elif len(password) <8:
+                self.errors.append('A senha deve ter 8 digitos.') 
         
         if len(self.errors) == 0:
             self.data = {"username": username.strip(), "password": password}
@@ -32,14 +37,15 @@ class Usuario:
     
     def save(self):
         dao = UsuarioDAO()
-        resultado = dao.create(self.data)
-
-        if resultado == 1:
-            return True
-        else:
-            return False
         
-    
+        dados = dict(self.data)
+
+        dados['password'] = generate_password_hash(dados['password'])
+        resultado = dao.create(dados)
+
+        return resultado == 1
+
+        
     @staticmethod
     def get_by_username(username):
         dao = UsuarioDAO()
@@ -51,5 +57,11 @@ class Usuario:
     def autenticar(username, password):
         dao = UsuarioDAO()
 
-        usuaario = dao
-        pass
+        usuario = dao.read_one_by_username(username)
+
+        if usuario is None:
+            return None
+        if check_password_hash(usuario['password'], password):
+            usuario.pop('password')
+            return usuario
+        return None
